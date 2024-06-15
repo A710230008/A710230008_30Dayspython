@@ -1,0 +1,25 @@
+import math
+
+def find_hypotenuse(a, b):
+    """
+    Fungsi ini menerima dua parameter, yaitu panjang sisi a dan b,
+    dan mengembalikan panjang sisi miring (hipotenusa) dari segitiga siku-siku.
+    """
+    return math.sqrt(a**2 + b**2)
+
+def find_side(c, a_or_b):
+    """
+    Fungsi ini menerima dua parameter, yaitu panjang sisi miring (c) dan salah satu sisi tegak (a_or_b),
+    dan mengembalikan panjang sisi tegak lainnya dari segitiga siku-siku.
+    """
+    return math.sqrt(c**2 - a_or_b**2)
+
+a = 3
+b = 4
+c = find_hypotenuse(a, b)
+print(f"Panjang sisi miring (hipotenusa) adalah: {c}")
+
+c = 5
+a_or_b = 3
+other_side = find_side(c, a_or_b)
+print(f"Panjang sisi lainnya adalah: {other_side}")
