@@ -1,0 +1,26 @@
+class Anjing:
+    def __init__(self, nama, umur, ras):
+        self.nama = nama
+        self.umur = umur
+        self.ras = ras
+
+    def get_info(self):
+        return f"Nama: {self.nama}, Umur: {self.umur} tahun, Ras: {self.ras}"
+
+    def ulang_tahun(self):
+        self.umur += 1
+
+    def ubah_nama(self, nama_baru):
+        self.nama = nama_baru
+
+anjing1 = Anjing("Buddy", 3, "Golden Retriever")
+anjing2 = Anjing("Max", 2, "Bulldog")
+
+print(anjing1.get_info())
+print(anjing2.get_info())
+
+anjing1.ulang_tahun()
+print(f"Setelah ulang tahun, umur {anjing1.nama}: {anjing1.umur}")
+
+anjing2.ubah_nama("Charlie")
+print(f"Setelah mengubah nama, info anjing: {anjing2.get_info()}")
