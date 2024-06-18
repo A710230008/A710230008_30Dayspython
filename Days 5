@@ -1,0 +1,20 @@
+import datetime
+
+def get_independence_day(country):
+    independence_days = {
+        "Indonesia": (1945, 8, 17),  
+        "Malaysia": (1957, 8, 31),   
+        "Vietnam": (1945, 9, 2),     
+        "Thailand": (1932, 6, 24)    
+    }
+    
+    if country not in independence_days:
+        return f"Data kemerdekaan untuk {country} tidak ditemukan."
+    
+    year, month, day = independence_days[country]
+    independence_date = datetime.date(year, month, day)
+    return independence_date.strftime("%A, %d %B %Y")
+
+countries = ["Indonesia", "Malaysia", "Vietnam", "Thailand"]
+for country in countries:
+    print(f"Hari Kemerdekaan {country}: {get_independence_day(country)}")
