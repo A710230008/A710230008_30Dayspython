@@ -1,0 +1,24 @@
+import math
+
+def hitung_volume_silinder(jari_jari, tinggi):
+    volume = math.pi * (jari_jari ** 2) * tinggi
+    return volume
+
+def hitung_luas_permukaan_silinder(jari_jari, tinggi):
+    luas_permukaan = 2 * math.pi * jari_jari * (jari_jari + tinggi)
+    return luas_permukaan
+
+def main():
+    print("Program Menghitung Volume dan Luas Permukaan Silinder")
+    
+    jari_jari = float(input("Masukkan jari-jari silinder: "))
+    tinggi = float(input("Masukkan tinggi silinder: "))
+    
+    volume = hitung_volume_silinder(jari_jari, tinggi)
+    luas_permukaan = hitung_luas_permukaan_silinder(jari_jari, tinggi)
+    
+    print(f"\nVolume Silinder: {volume:.2f} satuan kubik")
+    print(f"Luas Permukaan Silinder: {luas_permukaan:.2f} satuan persegi")
+
+if __name__ == "__main__":
+    main()
