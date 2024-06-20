@@ -1,0 +1,20 @@
+class Kucing:
+    def __init__(self, nama, umur, warna):
+        self.nama = nama
+        self.umur = umur
+        self.warna = warna
+
+    def deskripsi(self):
+        return f"{self.nama} adalah kucing berumur {self.umur} tahun dan berwarna {self.warna}."
+
+    def suara(self):
+        return f"{self.nama} berkata: Meow!"
+
+kucing1 = Kucing("Milo", 3, "Coklat")
+kucing2 = Kucing("Luna", 2, "Putih")
+
+print(kucing1.deskripsi())
+print(kucing1.suara())
+
+print(kucing2.deskripsi())
+print(kucing2.suara())
