@@ -1,0 +1,46 @@
+class OjekOnlineApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle('Aplikasi Ojek Online')
+        self.setGeometry(100, 100, 300, 200)
+
+        layout = QVBoxLayout()
+
+        self.pickup_label = QLabel('Lokasi Penjemputan:', self)
+        layout.addWidget(self.pickup_label)
+
+        self.pickup_input = QLineEdit(self)
+        layout.addWidget(self.pickup_input)
+
+        self.destination_label = QLabel('Tujuan:', self)
+        layout.addWidget(self.destination_label)
+
+        self.destination_input = QLineEdit(self)
+        layout.addWidget(self.destination_input)
+
+        self.calculate_button = QPushButton('Hitung Jarak dan Biaya', self)
+        self.calculate_button.clicked.connect(self.calculate_fare)
+        layout.addWidget(self.calculate_button)
+
+        self.result_label = QLabel('', self)
+        layout.addWidget(self.result_label)
+
+        self.setLayout(layout)
+
+    def calculate_fare(self):
+        pickup_location = self.pickup_input.text()
+        destination_location = self.destination_input.text()
+
+        if not pickup_location or not destination_location:
+            QMessageBox.warning(self, 'Error', 'Silakan masukkan lokasi penjemputan dan tujuan')
+            return
+
+        distance = 10  # Misalnya jarak 10 km, bisa diganti dengan perhitungan sebenarnya
+        cost_per_km = 5000  # Misalnya biaya per km adalah 5000 IDR
+        total_cost = distance * cost_per_km
+
+        result_text = f'Jarak: {distance} km\nBiaya Perkiraan: {total_cost} IDR'
+        self.result_label.setText(result_text)
