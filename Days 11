@@ -1,0 +1,32 @@
+class Mobil:
+    def __init__(self, merk, model, tahun, kecepatan=0):
+        self.merk = merk
+        self.model = model
+        self.tahun = tahun
+        self.kecepatan = kecepatan
+
+    def percepat(self, increment):
+        self.kecepatan += increment
+        print(f"Kecepatan meningkat menjadi {self.kecepatan} km/jam")
+
+    def perlambat(self, decrement):
+        self.kecepatan = max(0, self.kecepatan - decrement)
+        print(f"Kecepatan berkurang menjadi {self.kecepatan} km/jam")
+
+    def berhenti(self):
+        self.kecepatan = 0
+        print("Mobil berhenti")
+
+    def info(self):
+        print(f"Merk: {self.merk}, Model: {self.model}, Tahun: {self.tahun}, Kecepatan: {self.kecepatan} km/jam")
+
+
+mobil1 = Mobil("Toyota", "Camry", 2022)
+
+mobil1.info()
+
+mobil1.percepat(50)
+mobil1.percepat(30)
+mobil1.perlambat(20)
+mobil1.berhenti()
+mobil1.info()
