@@ -1,0 +1,81 @@
+class Train:
+    def __init__(self, train_no, name, source, destination, seats):
+        self.train_no = train_no
+        self.name = name
+        self.source = source
+        self.destination = destination
+        self.seats = seats
+        self.booked_seats = 0
+
+    def book_ticket(self, num_seats):
+        if self.booked_seats + num_seats <= self.seats:
+            self.booked_seats += num_seats
+            print(f"{num_seats} seats booked successfully on {self.name}.")
+        else:
+            print("Not enough seats available.")
+
+    def available_seats(self):
+        return self.seats - self.booked_seats
+
+    def __str__(self):
+        return f"Train No: {self.train_no}, Name: {self.name}, Source: {self.source}, Destination: {self.destination}, Available Seats: {self.available_seats()}"
+
+
+class RailwaySystem:
+    def __init__(self):
+        self.trains = []
+
+    def add_train(self, train):
+        self.trains.append(train)
+
+    def display_trains(self):
+        if not self.trains:
+            print("No trains available.")
+        else:
+            for train in self.trains:
+                print(train)
+
+    def find_train(self, train_no):
+        for train in self.trains:
+            if train.train_no == train_no:
+                return train
+        return None
+
+    def book_ticket(self, train_no, num_seats):
+        train = self.find_train(train_no)
+        if train:
+            train.book_ticket(num_seats)
+        else:
+            print("Train not found.")
+
+
+def main():
+    railway_system = RailwaySystem()
+
+    # Menambahkan kereta ke sistem
+    railway_system.add_train(Train(101, "Argo Bromo Anggrek", "Surabaya", "Jakarta", 300))
+    railway_system.add_train(Train(102, "Taksaka", "Yogyakarta", "Jakarta", 200))
+    railway_system.add_train(Train(103, "Harina", "Bandung", "Surabaya", 150))
+
+    while True:
+        print("\n=== Railway Reservation System ===")
+        print("1. Display all trains")
+        print("2. Book ticket")
+        print("3. Exit")
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            railway_system.display_trains()
+        elif choice == 2:
+            train_no = int(input("Enter train number: "))
+            num_seats = int(input("Enter number of seats to book: "))
+            railway_system.book_ticket(train_no, num_seats)
+        elif choice == 3:
+            print("Exiting the system. Thank you!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
