@@ -1,0 +1,31 @@
+class AcaraTV:
+    def __init__(self, judul, durasi, kategori):
+        self.judul = judul
+        self.durasi = durasi
+        self.kategori = kategori
+class JadwalTV:
+    def __init__(self):
+        self.acara = []
+
+    def tambah_acara(self, acara, waktu_mulai):
+        self.acara.append({"acara": acara, "waktu_mulai": waktu_mulai})
+
+    def tampilkan_jadwal(self):
+        print("Jadwal Siaran Televisi:")
+        for item in self.acara:
+            acara = item["acara"]
+            waktu_mulai = item["waktu_mulai"]
+            print(f"{waktu_mulai} - {acara.judul} ({acara.kategori}) - Durasi: {acara.durasi} menit")
+
+if __name__ == "__main__":
+    # Buat beberapa acara TV
+    acara1 = AcaraTV("Berita Pagi", 30, "Berita")
+    acara2 = AcaraTV("Drama Siang", 60, "Drama")
+    acara3 = AcaraTV("Komedi Malam", 45, "Komedi")
+
+    jadwal_tv = JadwalTV()
+    jadwal_tv.tambah_acara(acara1, "06:00")
+    jadwal_tv.tambah_acara(acara2, "12:00")
+    jadwal_tv.tambah_acara(acara3, "20:00")
+
+    jadwal_tv.tampilkan_jadwal()
