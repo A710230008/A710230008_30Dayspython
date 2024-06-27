@@ -1,0 +1,66 @@
+class Hotel:
+    def __init__(self, name, location, rooms):
+        self.name = name
+        self.location = location
+        self.rooms = rooms  # jumlah total kamar
+        self.booked_rooms = 0  # jumlah kamar yang sudah dipesan
+
+    def book_room(self, num_rooms):
+        if self.booked_rooms + num_rooms <= self.rooms:
+            self.booked_rooms += num_rooms
+            print(f"{num_rooms} kamar telah berhasil dipesan di {self.name}.")
+        else:
+            print("Maaf, kamar tidak tersedia sebanyak itu.")
+
+    def available_rooms(self):
+        return self.rooms - self.booked_rooms
+
+class BookingSystem:
+    def __init__(self):
+        self.hotels = []
+
+    def add_hotel(self, hotel):
+        self.hotels.append(hotel)
+
+    def display_hotels(self):
+        print("Daftar Hotel:")
+        for i, hotel in enumerate(self.hotels):
+            print(f"{i + 1}. {hotel.name} - {hotel.location} ({hotel.available_rooms()} kamar tersedia)")
+
+    def book_hotel(self, hotel_index, num_rooms):
+        if 0 <= hotel_index < len(self.hotels):
+            hotel = self.hotels[hotel_index]
+            hotel.book_room(num_rooms)
+        else:
+            print("Hotel tidak ditemukan.")
+
+def main():
+    system = BookingSystem()
+
+    system.add_hotel(Hotel("Hotel A", "Jakarta", 10))
+    system.add_hotel(Hotel("Hotel B", "Bandung", 20))
+    system.add_hotel(Hotel("Hotel C", "Bali", 15))
+
+    while True:
+        print("\nSelamat datang di Aplikasi Pemesanan Hotel")
+        print("1. Tampilkan daftar hotel")
+        print("2. Pesan kamar")
+        print("3. Keluar")
+
+        choice = input("Pilih opsi: ")
+
+        if choice == "1":
+            system.display_hotels()
+        elif choice == "2":
+            system.display_hotels()
+            hotel_index = int(input("Pilih hotel (nomor): ")) - 1
+            num_rooms = int(input("Masukkan jumlah kamar yang ingin dipesan: "))
+            system.book_hotel(hotel_index, num_rooms)
+        elif choice == "3":
+            print("Terima kasih telah menggunakan aplikasi ini.")
+            break
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
+
+if __name__ == "__main__":
+    main()
