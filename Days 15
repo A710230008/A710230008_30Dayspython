@@ -1,0 +1,76 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QListWidget, QMessageBox
+
+class Motor:
+    def __init__(self, merk, model, harga):
+        self.merk = merk
+        self.model = model
+        self.harga = harga
+
+    def __str__(self):
+        return f"{self.merk} {self.model} - Rp {self.harga}"
+
+class MotorApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Aplikasi Jual Beli Motor Online")
+        self.setGeometry(100, 100, 600, 400)
+
+        self.motor_list = []
+
+        self.main_widget = QWidget()
+        self.setCentralWidget(self.main_widget)
+        
+        self.layout = QVBoxLayout()
+
+        self.list_widget = QListWidget()
+        self.layout.addWidget(self.list_widget)
+
+        self.input_layout = QHBoxLayout()
+        
+        self.merk_input = QLineEdit()
+        self.merk_input.setPlaceholderText("Merk")
+        self.input_layout.addWidget(self.merk_input)
+        
+        self.model_input = QLineEdit()
+        self.model_input.setPlaceholderText("Model")
+        self.input_layout.addWidget(self.model_input)
+        
+        self.harga_input = QLineEdit()
+        self.harga_input.setPlaceholderText("Harga")
+        self.input_layout.addWidget(self.harga_input)
+        
+        self.add_button = QPushButton("Tambahkan Motor")
+        self.add_button.clicked.connect(self.add_motor)
+        self.input_layout.addWidget(self.add_button)
+
+        self.layout.addLayout(self.input_layout)
+
+        self.main_widget.setLayout(self.layout)
+
+    def add_motor(self):
+        merk = self.merk_input.text()
+        model = self.model_input.text()
+        harga = self.harga_input.text()
+
+        if merk and model and harga:
+            try:
+                harga = int(harga)
+                motor = Motor(merk, model, harga)
+                self.motor_list.append(motor)
+                self.list_widget.addItem(str(motor))
+
+                self.merk_input.clear()
+                self.model_input.clear()
+                self.harga_input.clear()
+            except ValueError:
+                QMessageBox.warning(self, "Input Error", "Harga harus berupa angka!")
+        else:
+            QMessageBox.warning(self, "Input Error", "Semua field harus diisi!")
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MotorApp()
+    window.show()
+    sys.exit(app.exec_())
