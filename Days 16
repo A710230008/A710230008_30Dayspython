@@ -1,0 +1,54 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QRadioButton, QPushButton, QMessageBox
+
+class FoodOrderApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle('Aplikasi Pemesanan Makanan')
+
+        
+        main_layout = QVBoxLayout()
+
+    
+        self.title_label = QLabel('Pilih Menu Makanan:', self)
+        main_layout.addWidget(self.title_label)
+
+        
+        self.menu_items = {
+            'Mie Ayam': QRadioButton('Mie Ayam'),
+            'Bakso': QRadioButton('Bakso'),
+            'Soto': QRadioButton('Soto'),
+            'Rawon': QRadioButton('Rawon')
+        }
+
+        for menu_item in self.menu_items.values():
+            main_layout.addWidget(menu_item)
+
+      
+        self.order_button = QPushButton('Pesan', self)
+        self.order_button.clicked.connect(self.show_order)
+        main_layout.addWidget(self.order_button)
+
+        
+        self.setLayout(main_layout)
+
+    def show_order(self):
+        selected_item = None
+        for item, radio_button in self.menu_items.items():
+            if radio_button.isChecked():
+                selected_item = item
+                break
+
+        if selected_item:
+            QMessageBox.information(self, 'Pesanan Anda', f'Anda telah memesan {selected_item}. Terima kasih!')
+        else:
+            QMessageBox.warning(self, 'Peringatan', 'Silakan pilih menu makanan terlebih dahulu!')
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = FoodOrderApp()
+    ex.show()
+    sys.exit(app.exec_())
