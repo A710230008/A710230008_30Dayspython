@@ -1,0 +1,6 @@
+lebar = 10
+tinggi = 20
+
+luas = lebar * tinggi
+
+print("Luas ruangan adalah", luas, "meter persegi")
