@@ -1,0 +1,47 @@
+class MotorBensin:
+    def __init__(self, kapasitas_bahan_bakar):
+        self.kapasitas_bahan_bakar = kapasitas_bahan_bakar  # kapasitas tangki dalam liter
+        self.bahan_bakar = kapasitas_bahan_bakar  # bahan bakar saat ini dalam liter
+        self.mesin_hidup = False  # status mesin
+
+    def isi_bahan_bakar(self, jumlah):
+        if jumlah + self.bahan_bakar > self.kapasitas_bahan_bakar:
+            print("Bahan bakar terlalu banyak! Kapasitas tangki melebihi.")
+        else:
+            self.bahan_bakar += jumlah
+            print(f"Bahan bakar diisi {jumlah} liter. Total bahan bakar: {self.bahan_bakar} liter.")
+
+    def hidupkan_mesin(self):
+        if self.bahan_bakar > 0:
+            self.mesin_hidup = True
+            print("Mesin dihidupkan.")
+        else:
+            print("Bahan bakar habis! Tidak bisa menghidupkan mesin.")
+
+    def matikan_mesin(self):
+        self.mesin_hidup = False
+        print("Mesin dimatikan.")
+
+    def jalan(self, jarak):
+        if self.mesin_hidup:
+            konsumsi_bahan_bakar = jarak / 20  # konsumsi bahan bakar 1 liter untuk 20 km
+            if konsumsi_bahan_bakar <= self.bahan_bakar:
+                self.bahan_bakar -= konsumsi_bahan_bakar
+                print(f"Motor berjalan {jarak} km. Bahan bakar tersisa: {self.bahan_bakar:.2f} liter.")
+            else:
+                print("Bahan bakar tidak cukup untuk perjalanan ini.")
+        else:
+            print("Mesin belum dihidupkan.")
+
+    def cek_bahan_bakar(self):
+        print(f"Bahan bakar tersisa: {self.bahan_bakar:.2f} liter.")
+
+
+# Contoh penggunaan
+motor = MotorBensin(kapasitas_bahan_bakar=10)  # Motor dengan kapasitas tangki 10 liter
+motor.cek_bahan_bakar()
+motor.isi_bahan_bakar(5)  # Mengisi 5 liter
+motor.hidupkan_mesin()
+motor.jalan(100)  # Berjalan 100 km
+motor.cek_bahan_bakar()
+motor.matikan_mesin()
