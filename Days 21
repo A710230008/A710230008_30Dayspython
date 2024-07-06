@@ -1,0 +1,39 @@
+class Komputer:
+    def __init__(self, merek, model, prosesor, ram, storage):
+        self.merek = merek
+        self.model = model
+        self.prosesor = prosesor
+        self.ram = ram  # dalam GB
+        self.storage = storage  # dalam GB
+
+    def tampilkan_info(self):
+        info = (f"Komputer Merek: {self.merek}\n"
+                f"Model: {self.model}\n"
+                f"Prosesor: {self.prosesor}\n"
+                f"RAM: {self.ram} GB\n"
+                f"Storage: {self.storage} GB")
+        return info
+
+    def upgrade_ram(self, tambahan_ram):
+        self.ram += tambahan_ram
+        return f"RAM berhasil ditingkatkan. Total RAM sekarang: {self.ram} GB"
+
+    def upgrade_storage(self, tambahan_storage):
+        self.storage += tambahan_storage
+        return f"Storage berhasil ditingkatkan. Total storage sekarang: {self.storage} GB"
+
+
+# Contoh penggunaan kelas Komputer
+komputer1 = Komputer("Dell", "XPS 13", "Intel i7", 16, 512)
+
+# Tampilkan informasi komputer
+print(komputer1.tampilkan_info())
+
+# Upgrade RAM
+print(komputer1.upgrade_ram(8))
+
+# Upgrade Storage
+print(komputer1.upgrade_storage(256))
+
+# Tampilkan informasi komputer setelah upgrade
+print(komputer1.tampilkan_info())
