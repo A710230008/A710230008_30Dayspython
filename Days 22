@@ -1,0 +1,17 @@
+// Contoh: Kelas untuk menangani data pelanggan
+
+public class Customer
+{
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+// Contoh: Kelas untuk menangani penyimpanan data pelanggan
+
+public class CustomerRepository
+{
+    public void Save(Customer customer)
+    {
+        // Simpan data pelanggan ke database
+    }
+}
